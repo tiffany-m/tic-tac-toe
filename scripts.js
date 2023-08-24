@@ -1,5 +1,5 @@
-const players = (sign) = {
-
+const players = {
+    // code
 }
 
 let gameBoard = (() => {
@@ -19,9 +19,11 @@ let gameBoard = (() => {
         if(e.target.innerText == "X" || e.target.innerText == "O") {
             return;
         } else if (currentPlayer == "X") {
+            square.style.color = "#ffec19";
             square.innerText = "X"
             currentPlayer = "O";
         } else {
+            square.style.color = "#ff9800";
             square.innerText = "O";
             currentPlayer = "X";
         }
