@@ -52,32 +52,38 @@ let gameBoard = (() => {
         return null; 
     }
 
-    squares.forEach(square => square.addEventListener("click", (e) => {
+    function handleSquareClick(e) {
         let index = e.target.getAttribute("data-index");
 
-        if(e.target.innerText == "X" || e.target.innerText == "O") {
+        if (e.target.innerText == "X" || e.target.innerText == "O") {
             return;
         } else if (currentPlayer == "X") {
             board[index] = "X"
-            square.style.color = "#ffec19";
-            square.innerText = "X"
+            e.target.style.color = "#ffec19";
+            e.target.innerText = "X"
             currentPlayer = "O";
             currentPlayerSymbol.innerText = `${currentPlayer}`;
             currentPlayerSymbol.style.color = "#ff9800";
         } else {
             board[index] = "O"
-            square.style.color = "#ff9800";
-            square.innerText = "O";
+            e.target.style.color = "#ff9800";
+            e.target.innerText = "O";
             currentPlayer = "X";
             currentPlayerSymbol.innerText = `${currentPlayer}`;
             currentPlayerSymbol.style.color = "#ffec19";
         }
 
         winner = checkForWinner();
-    }))
+        if (winner) {
+            squares.forEach(square => square.removeEventListener("click", handleSquareClick));
+        }
+    }
+
+    squares.forEach(square => square.addEventListener("click", handleSquareClick));
 
     restartBtn.addEventListener("click", () => {
-        clearBoard()
+        clearBoard();
+        squares.forEach(square => square.addEventListener("click", handleSquareClick));
     });
 })(); 
 
