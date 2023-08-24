@@ -5,7 +5,7 @@ const players = {
 let gameBoard = (() => {
     const board = ["", "", "", "", "", "", "", "", ""];
     const restartBtn = document.getElementById('restart-btn');
-    let squares = document.querySelectorAll(".box");
+    const squares = document.querySelectorAll(".box");
     let squaresArray = Array.from(squares);
     let currentPlayer = "X";
 
@@ -16,13 +16,17 @@ let gameBoard = (() => {
     }
 
     squares.forEach(square => square.addEventListener("click", (e) => {
+        let index = e.target.getAttribute("data-index");
+
         if(e.target.innerText == "X" || e.target.innerText == "O") {
             return;
         } else if (currentPlayer == "X") {
+            board[index] = "X"
             square.style.color = "#ffec19";
             square.innerText = "X"
             currentPlayer = "O";
         } else {
+            board[index] = "O"
             square.style.color = "#ff9800";
             square.innerText = "O";
             currentPlayer = "X";
