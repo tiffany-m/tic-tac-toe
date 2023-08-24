@@ -18,6 +18,11 @@ let gameBoard = (() => {
         [2, 4, 6],
     ];
     let currentPlayer = "X";
+    let currentPlayerSymbol = document.querySelector(".current-player-symbol");
+    const xScoreDisplay = document.querySelector(".x-score-display");
+    const oScoreDisplay = document.querySelector(".o-score-display");
+    let xScore = 0;
+    let oScore = 0;
     let winner = "";
 
     function clearBoard() {
@@ -32,7 +37,15 @@ let gameBoard = (() => {
         for (let i = 0; i < winningConditions.length; i++) {
             const [a, b, c] = winningConditions[i];
             if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-                console.log("win");
+                if(board[a] === "X") {
+                    xScore++;
+                    xScoreDisplay.innerText = xScore;
+                    console.log("winnder x")
+                } else {
+                    oScore++;
+                    oScoreDisplay.innerText = oScore;
+                    console.log("winner 0")
+                }
                 return board[a]; // Returns the winning player ("X" or "O")
             }
         }
@@ -49,11 +62,15 @@ let gameBoard = (() => {
             square.style.color = "#ffec19";
             square.innerText = "X"
             currentPlayer = "O";
+            currentPlayerSymbol.innerText = `${currentPlayer}`;
+            currentPlayerSymbol.style.color = "#ff9800";
         } else {
             board[index] = "O"
             square.style.color = "#ff9800";
             square.innerText = "O";
             currentPlayer = "X";
+            currentPlayerSymbol.innerText = `${currentPlayer}`;
+            currentPlayerSymbol.style.color = "#ffec19";
         }
 
         winner = checkForWinner();
