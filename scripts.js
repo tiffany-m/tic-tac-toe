@@ -21,6 +21,8 @@ let gameBoard = (() => {
     let currentPlayerSymbol = document.querySelector(".current-player-symbol");
     const xScoreDisplay = document.querySelector(".x-score-display");
     const oScoreDisplay = document.querySelector(".o-score-display");
+    const winnerDisplay = document.getElementById("winner-display");
+    let currentWinner = document.querySelector(".current-winner")
     let xScore = 0;
     let oScore = 0;
     let winner = "";
@@ -31,6 +33,7 @@ let gameBoard = (() => {
             board[i] = "";
         }
         currentPlayer = "X";
+        currentWinner.innerText = "";
     }
 
     function checkForWinner() {
@@ -46,7 +49,7 @@ let gameBoard = (() => {
                     oScoreDisplay.innerText = oScore;
                     console.log("winner 0")
                 }
-                return board[a]; // Returns the winning player ("X" or "O")
+                return board[a];
             }
         }
         return null; 
@@ -76,6 +79,12 @@ let gameBoard = (() => {
         winner = checkForWinner();
         if (winner) {
             squares.forEach(square => square.removeEventListener("click", handleSquareClick));
+            currentWinner.innerText = winner;
+            if(winner === "X") {
+                currentWinner.style.color = "#ffec19";
+            } else {
+                currentWinner.style.color = "ff9800";
+            }
         }
     }
 

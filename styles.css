@@ -48,6 +48,7 @@ body {
 }
 
 #winner-display {
+    font-size: 3rem;
     color: #f6412d;
 }
 
