@@ -4,7 +4,7 @@ body {
     background-color: black;
 }
 
-#game-header, #current-player-display, #x-score-container, #o-score-container, .box, #restart-btn {
+#game-header, #current-player-display, #winner-display, #x-score-container, #o-score-container, .box, #restart-btn {
     font-family: 'Nova Round', Arial;
     font-weight: bold;
 }
@@ -14,25 +14,29 @@ body {
 }
 
 #game-info-container, #restart-btn {
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
 #game-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-items: center;
-    gap: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
 }
 
 #game-header {
+    text-align: center;
+    padding: 2rem 0;
     font-size: 5rem;
     color: #f6412d;
 }
 
 #game-info-container {
     display: flex;
-    justify-content: space-between;
-    width: 600px;
+    flex-direction: column;
+    align-content: space-between;
+    height: 600px;
+    width: 400px;
+    gap: 2rem;
 }
 
 .current-player-symbol {
@@ -43,10 +47,14 @@ body {
     color: #f6412d;
 }
 
+#winner-display {
+    color: #f6412d;
+}
+
 #game-board-display {
     width: 600px;
     height: 600px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     background-color: #292828;
     color: #fff;
     border: 6px solid rgb(121, 111, 111);
